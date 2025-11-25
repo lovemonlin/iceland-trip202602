@@ -280,19 +280,6 @@
             transform: scale(1.1) rotate(5deg);
             color: #fff;
         }
-
-        /* 行程詳細內容樣式 (Itinerary Details) */
-        .itinerary-details {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .itinerary-details.expanded {
-            max-height: 500px; /* 預留足夠高度 */
-            opacity: 1;
-            margin-top: 1rem;
-        }
     </style>
 </head>
 <body>
@@ -445,6 +432,14 @@
 
             <div class="glass-card p-6 rounded-2xl order-2 md:order-1 md:mr-12">
                 <div class="space-y-4">
+                    <!-- 新增景點 -->
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-300 shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                             <span class="block text-xs text-gray-400 uppercase tracking-wide">Attractions</span>
+                            <span class="text-gray-100">辛格韋德利國家公園、間歇泉區、黃金瀑布</span>
+                        </div>
+                    </div>
                      <div class="flex items-start gap-3">
                         <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0"><i class="fa-solid fa-bed"></i></div>
                         <div>
@@ -456,13 +451,19 @@
                         <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-300 shrink-0"><i class="fa-solid fa-utensils"></i></div>
                         <div>
                             <span class="block text-xs text-gray-400 uppercase tracking-wide">Meals</span>
-                            <span class="text-gray-100">早、午、晚餐：自理</span>
+                            <span class="text-gray-100">早餐：自理 午餐：自理 晚餐：自理</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Day 3 to Day 10 (Rest of the content) -->
+        <!-- ... (以下內容保持不變，請使用上一個版本或直接複製 Day 3 ~ Footer) ... -->
+        <!-- 為了節省篇幅，這裡省略了 Day 3 到 Footer 的程式碼，請確保在實際檔案中保留它們 -->
+        <!-- ... -->
+        <!-- 為了完整性，這裡補上 Day 3 ~ Footer 的內容 -->
+        
         <!-- Day 3 -->
         <div id="day-3" class="relative grid md:grid-cols-2 gap-8 mb-24 reveal item-wrapper pt-8">
             <div class="md:text-right flex flex-col justify-center order-1 md:pr-12">
@@ -480,7 +481,6 @@
 
                 <!-- Day 3 Photo Gallery -->
                 <div class="grid grid-cols-2 gap-2 mt-6 mb-4">
-                    <!-- 使用 onerror 自動切換到 Unsplash 作為 fallback，確保即使沒有下載圖片也不會破圖 -->
                     <img src="D31.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-24 md:h-32 w-full cursor-pointer" alt="塞里雅蘭瀑布">
                     <img src="D32.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504829857797-ddff29c27927?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-24 md:h-32 w-full cursor-pointer" alt="斯科加爾瀑布">
                     <img src="D33.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1553163147-622536082d32?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-24 md:h-32 w-full cursor-pointer" alt="黑沙灘">
@@ -1000,6 +1000,7 @@
 
         <!-- Notes Section -->
         <section id="notes" class="mb-24 reveal">
+            <!-- ... (Notes Content same as before) ... -->
             <h2 class="text-3xl font-bold text-center text-white mb-12 font-['Outfit']">重要注意事項</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 
