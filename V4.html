@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 冰島環島 10 日輕旅行 | Unicorn Tour</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+    <!-- 引入圖示庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #0b1016;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-padding-top: 100px; 
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* 背景極光動畫效果 */
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(34, 211, 238, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(74, 222, 128, 0.1) 0%, transparent 40%),
+                linear-gradient(to bottom, #0f172a 0%, #1e293b 100%);
+            z-index: -2;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.3;
+            z-index: -1;
+            animation: twinkle 100s linear infinite;
+        }
+
+        @keyframes twinkle {
+            from {background-position: 0 0;}
+            to {background-position: 1000px 1000px;}
+        }
+
+        /* 玻璃擬態卡片 */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2), inset 0 0 20px rgba(56, 189, 248, 0.05);
+        }
+
+        /* 地圖標籤樣式 */
+        .map-pill {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .map-pill:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .map-pill i {
+            transition: transform 0.3s ease;
+        }
+        .map-pill:hover i {
+            transform: scale(1.2);
+            color: #f87171; /* red-400 */
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #38bdf8, #4ade80, transparent);
+            z-index: 0;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-line {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        .hero-text {
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+        }
+
+        .nav-btn {
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        .nav-btn:hover {
+            background-color: rgba(34, 211, 238, 0.2);
+            color: #22d3ee;
+        }
+        
+        .back-to-nav {
+            opacity: 0.5;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .back-to-nav:hover {
+            opacity: 1;
+            background: rgba(255,255,255,0.1);
+            color: #22d3ee;
+            border-color: #22d3ee;
+        }
+
+        /* 領隊區塊特殊樣式 */
+        .leader-img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
+        }
+        .leader-img-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        /* 注意事項樣式 */
+        .note-summary-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .note-summary-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+        .note-summary-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #22d3ee;
+            font-weight: bold;
+        }
+        
+        .note-details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+        }
+        
+        .note-details-content.expanded {
+            max-height: 2000px; /* 足夠大的高度以容納內容 */
+            transition: max-height 1s ease-in-out;
+        }
+
+        .expand-btn i {
+            transition: transform 0.3s;
+        }
+        .expand-btn.expanded i {
+            transform: rotate(180deg);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(2, 200px);
+            }
+            /* 特殊佈局：第一張圖佔兩格寬 */
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+            .gallery-item:nth-child(2) {
+                grid-column: span 2;
+            }
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            cursor: pointer;
+            height: 200px;
+        }
+        @media (min-width: 1024px) {
+            .gallery-item:nth-child(1) {
+                height: auto;
+            }
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Preparation Icons */
+        .prep-icon {
+            transition: all 0.3s;
+        }
+        .glass-card:hover .prep-icon {
+            transform: scale(1.1) rotate(5deg);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="aurora-bg"></div>
+    <div class="stars"></div>
+
+    <!-- Hero Section -->
+    <header class="relative h-[80vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+        <div class="absolute inset-0 z-[-1]">
+            <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?q=80&w=2070&auto=format&fit=crop" alt="Iceland Aurora" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#0b1016]/50 to-[#0b1016]"></div>
+        </div>
+
+        <div class="reveal active space-y-4">
+            <span class="inline-block py-1 px-3 rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 text-sm tracking-wider uppercase backdrop-blur-md mb-4">
+                Exclusive Journey
+            </span>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white mb-2 hero-text font-['Outfit']">
+                ICELAND 2026
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 font-light tracking-wide">
+                冰島環島 10 日輕旅行
+            </p>
+            <div class="flex items-center justify-center gap-4 mt-8 text-sm md:text-base text-cyan-200">
+                <span class="flex items-center gap-2"><i class="fa-regular fa-calendar"></i> 2026/02/19 出發</span>
+                <span class="w-1 h-1 bg-cyan-500 rounded-full"></span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-route"></i> 環島公路</span>
+            </div>
+            
+            <a href="#quick-nav" class="mt-12 inline-block px-8 py-3 rounded-full bg-white text-slate-900 font-semibold hover:bg-cyan-400 hover:text-black transition-colors duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                開始旅程
+            </a>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation (Table of Contents) -->
+    <nav id="quick-nav" class="sticky top-0 z-50 bg-[#0b1016]/80 backdrop-blur-xl border-b border-white/5 py-3">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-start md:justify-center gap-2 overflow-x-auto no-scrollbar pb-1">
+                <a href="#day-1" class="nav-btn px-3 py-1.5 rounded-full text-sm text-gray-300 border border-white/10 bg-white/5">Day 01</a>
+                <a href="#day-2" class="nav-btn px-3 py-1.5 rounded-full text-sm text-gray-300 border border-white/10 bg-white/5">Day 02</a>
+                <a href="#day-3" class="nav-btn px-3 py-1.5 rounded-full text-sm text-gray-300 border border-white/10 bg-white/5">Day 03</a>
+                <a href="#day-4" class="nav-btn px-3 py-1.5 rounded-full text-sm text-gray-300 border border-white/10 bg-white/5">Day 04</a>
+                <a href="#day-5" class="nav-btn px-3 py-1.5 rounded-full text-sm text-gray-300 border border-white/10 bg-white/5">Day 05</a>
+                <a href="#day-6" class="nav-btn px-3 py-1.5 rounded-full text-sm text-gray-300 border border-white/10 bg-white/5">Day 06</a>
+                <a href="#day-7" class="nav-btn px-3 py-1.5 rounded-full text-sm text-gray-300 border border-white/10 bg-white/5">Day 07</a>
+                <a href="#day-8" class="nav-btn px-3 py-1.5 rounded-full text-sm text-gray-300 border border-white/10 bg-white/5">Day 08</a>
+                <a href="#day-9" class="nav-btn px-3 py-1.5 rounded-full text-sm text-gray-300 border border-white/10 bg-white/5">Day 09</a>
+                <a href="#day-10" class="nav-btn px-3 py-1.5 rounded-full text-sm text-gray-300 border border-white/10 bg-white/5">Day 10</a>
+                <a href="#leader-profile" class="nav-btn px-3 py-1.5 rounded-full text-sm text-cyan-300 border border-cyan-500/30 bg-cyan-500/10"><i class="fa-solid fa-camera mr-1"></i> 領隊</a>
+                <a href="#gallery" class="nav-btn px-3 py-1.5 rounded-full text-sm text-purple-300 border border-purple-500/30 bg-purple-500/10"><i class="fa-regular fa-images mr-1"></i> 圖輯</a>
+                <a href="#preparation" class="nav-btn px-3 py-1.5 rounded-full text-sm text-pink-300 border border-pink-500/30 bg-pink-500/10"><i class="fa-solid fa-suitcase mr-1"></i> 裝備</a>
+                <a href="#notes" class="nav-btn px-3 py-1.5 rounded-full text-sm text-yellow-300 border border-yellow-500/30 bg-yellow-500/10"><i class="fa-solid fa-circle-exclamation mr-1"></i> 事項</a>
+                <a href="#qa" class="nav-btn px-3 py-1.5 rounded-full text-sm text-green-300 border border-green-500/30 bg-green-500/10"><i class="fa-solid fa-circle-question mr-1"></i> Q&A</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Itinerary Section -->
+    <main class="relative max-w-5xl mx-auto px-4 py-16">
+        <div class="timeline-line"></div>
+
+        <!-- Day 1 -->
+        <div id="day-1" class="relative grid md:grid-cols-2 gap-8 mb-24 reveal item-wrapper pt-8">
+            <div class="md:text-right flex flex-col justify-center order-1 md:pr-12">
+                <div class="flex items-center justify-start md:justify-end gap-3 mb-1">
+                    <h2 class="text-3xl font-bold text-cyan-400 font-['Outfit']">DAY 01</h2>
+                    <a href="#quick-nav" class="back-to-nav w-8 h-8 rounded-full flex items-center justify-center text-xs" title="回到目錄">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+                <span class="text-gray-400 text-sm">2026/02/19</span>
+                <h3 class="text-xl font-semibold mt-2 text-white">抵達雷克雅維克</h3>
+                <p class="mt-4 text-gray-300 leading-relaxed">
+                    順利抵達冰島凱夫拉維克國際機場，感受北國清冽的空氣。下午 16:30 集合後，前往市區入住民宿。
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4 justify-start md:justify-end">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Reykjavik+Iceland" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        雷克雅維克 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="absolute left-[24px] md:left-1/2 top-16 w-4 h-4 bg-cyan-400 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.8)] border-4 border-[#0b1016] transform -translate-x-1/2 z-10"></div>
+            
+            <div class="glass-card p-6 rounded-2xl order-2 md:ml-12">
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0"><i class="fa-solid fa-bed"></i></div>
+                        <div>
+                            <span class="block text-xs text-gray-400 uppercase tracking-wide">Accommodation</span>
+                            <span class="text-gray-100">Blue Luxury Apartment 或同級</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-300 shrink-0"><i class="fa-solid fa-utensils"></i></div>
+                        <div>
+                            <span class="block text-xs text-gray-400 uppercase tracking-wide">Meals</span>
+                            <span class="text-gray-100">晚餐：自理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div id="day-2" class="relative grid md:grid-cols-2 gap-8 mb-24 reveal item-wrapper pt-8">
+            <div class="order-1 md:order-2 md:text-left flex flex-col justify-center md:pl-12">
+                <div class="flex items-center justify-start gap-3 mb-1">
+                    <h2 class="text-3xl font-bold text-green-400 font-['Outfit']">DAY 02</h2>
+                    <a href="#quick-nav" class="back-to-nav w-8 h-8 rounded-full flex items-center justify-center text-xs" title="回到目錄">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+                <span class="text-gray-400 text-sm">2026/02/20</span>
+                <h3 class="text-xl font-semibold mt-2 text-white">黃金圈之旅</h3>
+                <p class="mt-4 text-gray-300 leading-relaxed">
+                    探訪冰島最經典的路線。見證板塊分裂的辛格韋德利、噴發的間歇泉與氣勢磅礴的黃金瀑布。
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Thingvellir+National+Park" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        辛格韋德利 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Geysir+Iceland" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        間歇泉 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Gullfoss+Falls" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        黃金瀑布 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="absolute left-[24px] md:left-1/2 top-16 w-4 h-4 bg-green-400 rounded-full shadow-[0_0_15px_rgba(74,222,128,0.8)] border-4 border-[#0b1016] transform -translate-x-1/2 z-10"></div>
+
+            <div class="glass-card p-6 rounded-2xl order-2 md:order-1 md:mr-12">
+                <div class="space-y-4">
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0"><i class="fa-solid fa-bed"></i></div>
+                        <div>
+                             <span class="block text-xs text-gray-400 uppercase tracking-wide">Accommodation</span>
+                            <span class="text-gray-100">Blue Luxury Apartment 或同級</span>
+                        </div>
+                    </div>
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-300 shrink-0"><i class="fa-solid fa-utensils"></i></div>
+                        <div>
+                            <span class="block text-xs text-gray-400 uppercase tracking-wide">Meals</span>
+                            <span class="text-gray-100">早、午、晚餐：自理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div id="day-3" class="relative grid md:grid-cols-2 gap-8 mb-24 reveal item-wrapper pt-8">
+            <div class="md:text-right flex flex-col justify-center order-1 md:pr-12">
+                <div class="flex items-center justify-start md:justify-end gap-3 mb-1">
+                    <h2 class="text-3xl font-bold text-cyan-400 font-['Outfit']">DAY 03</h2>
+                    <a href="#quick-nav" class="back-to-nav w-8 h-8 rounded-full flex items-center justify-center text-xs" title="回到目錄">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+                <span class="text-gray-400 text-sm">2026/02/21</span>
+                <h3 class="text-xl font-semibold mt-2 text-white">南岸風光與騎馬</h3>
+                <p class="mt-4 text-gray-300 leading-relaxed">
+                    漫步於黑沙灘的玄武岩柱旁，感受瀑布的水氣，並體驗獨特的冰島馬騎乘活動。
+                </p>
+                 <div class="flex flex-wrap gap-2 mt-4 justify-start md:justify-end">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Seljalandsfoss" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        塞里雅蘭瀑布 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Skogafoss" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        斯科加爾瀑布 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Reynisfjara+Black+Sand+Beach" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        黑沙灘 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                    <span class="px-3 py-1 text-xs rounded-full bg-purple-500/20 text-purple-200 border border-purple-500/30">🐎 騎馬體驗</span>
+                </div>
+            </div>
+            <div class="absolute left-[24px] md:left-1/2 top-16 w-4 h-4 bg-cyan-400 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.8)] border-4 border-[#0b1016] transform -translate-x-1/2 z-10"></div>
+            
+            <div class="glass-card p-6 rounded-2xl order-2 md:ml-12">
+                 <div class="space-y-4">
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0"><i class="fa-solid fa-bed"></i></div>
+                        <div>
+                            <span class="text-gray-100">The Holiday Houses by Stay in Iceland 或同級</span>
+                        </div>
+                    </div>
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-300 shrink-0"><i class="fa-solid fa-utensils"></i></div>
+                        <div>
+                            <span class="text-gray-100">三餐自理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div id="day-4" class="relative grid md:grid-cols-2 gap-8 mb-24 reveal item-wrapper pt-8">
+            <div class="order-1 md:order-2 md:text-left flex flex-col justify-center md:pl-12">
+                <div class="flex items-center justify-start gap-3 mb-1">
+                    <h2 class="text-3xl font-bold text-blue-400 font-['Outfit']">DAY 04</h2>
+                    <a href="#quick-nav" class="back-to-nav w-8 h-8 rounded-full flex items-center justify-center text-xs" title="回到目錄">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+                <span class="text-gray-400 text-sm">2026/02/22</span>
+                <h3 class="text-xl font-semibold mt-2 text-white">藍冰洞與鑽石沙灘</h3>
+                <p class="mt-4 text-gray-300 leading-relaxed">
+                    深入瓦特納冰川的藍冰洞探險，隨後前往如夢似幻的傑古沙龍冰河湖與鑽石沙灘。
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                     <a href="https://www.google.com/maps/search/?api=1&query=Jokulsarlon+Glacier+Lagoon" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        傑古沙龍冰河湖 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                     <a href="https://www.google.com/maps/search/?api=1&query=Diamond+Beach+Iceland" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        鑽石沙灘 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                    <span class="px-3 py-1 text-xs rounded-full bg-blue-500/20 text-blue-200 border border-blue-500/30">🧊 藍冰洞探險</span>
+                    <span class="px-3 py-1 text-xs rounded-full bg-blue-500/20 text-blue-200 border border-blue-500/30">🧗 冰川健行</span>
+                </div>
+            </div>
+            
+            <div class="absolute left-[24px] md:left-1/2 top-16 w-4 h-4 bg-blue-400 rounded-full shadow-[0_0_15px_rgba(96,165,250,0.8)] border-4 border-[#0b1016] transform -translate-x-1/2 z-10"></div>
+
+            <div class="glass-card p-6 rounded-2xl order-2 md:order-1 md:mr-12">
+                 <div class="space-y-4">
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0"><i class="fa-solid fa-bed"></i></div>
+                        <div>
+                            <span class="text-gray-100">Milk Factory 或同級</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-300 shrink-0"><i class="fa-solid fa-utensils"></i></div>
+                        <div>
+                            <span class="text-gray-100">三餐自理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div id="day-5" class="relative grid md:grid-cols-2 gap-8 mb-24 reveal item-wrapper pt-8">
+            <div class="md:text-right flex flex-col justify-center order-1 md:pr-12">
+                <div class="flex items-center justify-start md:justify-end gap-3 mb-1">
+                    <h2 class="text-3xl font-bold text-cyan-400 font-['Outfit']">DAY 05</h2>
+                    <a href="#quick-nav" class="back-to-nav w-8 h-8 rounded-full flex items-center justify-center text-xs" title="回到目錄">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+                <span class="text-gray-400 text-sm">2026/02/23</span>
+                <h3 class="text-xl font-semibold mt-2 text-white">東部峽灣的寧靜</h3>
+                <p class="mt-4 text-gray-300 leading-relaxed">
+                    穿越蜿蜒的東部峽灣，途經都皮沃古爾小鎮，最終抵達埃伊爾斯塔濟。
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4 justify-start md:justify-end">
+                    <a href="https://www.google.com/maps/search/?api=1&query=East+Fjords+Iceland" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        東部峽灣 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                     <a href="https://www.google.com/maps/search/?api=1&query=Djupivogur" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        都皮沃古爾 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Egilsstadir" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        埃伊爾斯塔濟 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="absolute left-[24px] md:left-1/2 top-16 w-4 h-4 bg-cyan-400 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.8)] border-4 border-[#0b1016] transform -translate-x-1/2 z-10"></div>
+            
+            <div class="glass-card p-6 rounded-2xl order-2 md:ml-12">
+                 <div class="space-y-4">
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0"><i class="fa-solid fa-bed"></i></div>
+                        <div>
+                            <span class="text-gray-100">Eiðar Apartments 或同級</span>
+                        </div>
+                    </div>
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-300 shrink-0"><i class="fa-solid fa-utensils"></i></div>
+                        <div>
+                            <span class="text-gray-100">三餐自理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 6 -->
+        <div id="day-6" class="relative grid md:grid-cols-2 gap-8 mb-24 reveal item-wrapper pt-8">
+            <div class="order-1 md:order-2 md:text-left flex flex-col justify-center md:pl-12">
+                <div class="flex items-center justify-start gap-3 mb-1">
+                    <h2 class="text-3xl font-bold text-red-400 font-['Outfit']">DAY 06</h2>
+                    <a href="#quick-nav" class="back-to-nav w-8 h-8 rounded-full flex items-center justify-center text-xs" title="回到目錄">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+                <span class="text-gray-400 text-sm">2026/02/24</span>
+                <h3 class="text-xl font-semibold mt-2 text-white">米湖與地熱溫泉</h3>
+                <p class="mt-4 text-gray-300 leading-relaxed">
+                    探索神祕的黑暗城堡與 Grjótagjá 地洞溫泉，並在沃克溫泉享受極致放鬆。
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Vok+Baths" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-red-500/20 text-red-200 border border-red-500/30">
+                        ♨️ 沃克溫泉 <i class="fa-solid fa-location-dot text-red-400"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Grjotagja+Cave" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        Grjótagjá 地洞 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Dimmuborgir" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        黑暗城堡 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                     <a href="https://www.google.com/maps/search/?api=1&query=Lake+Myvatn" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        米湖 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="absolute left-[24px] md:left-1/2 top-16 w-4 h-4 bg-red-400 rounded-full shadow-[0_0_15px_rgba(248,113,113,0.8)] border-4 border-[#0b1016] transform -translate-x-1/2 z-10"></div>
+
+            <div class="glass-card p-6 rounded-2xl order-2 md:order-1 md:mr-12">
+                 <div class="space-y-4">
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0"><i class="fa-solid fa-bed"></i></div>
+                        <div>
+                            <span class="text-gray-100">Skutustadir Farmer Guesthouse 或同級</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-300 shrink-0"><i class="fa-solid fa-utensils"></i></div>
+                        <div>
+                            <span class="text-gray-100">三餐自理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 7 -->
+        <div id="day-7" class="relative grid md:grid-cols-2 gap-8 mb-24 reveal item-wrapper pt-8">
+            <div class="md:text-right flex flex-col justify-center order-1 md:pr-12">
+                <div class="flex items-center justify-start md:justify-end gap-3 mb-1">
+                    <h2 class="text-3xl font-bold text-cyan-400 font-['Outfit']">DAY 07</h2>
+                    <a href="#quick-nav" class="back-to-nav w-8 h-8 rounded-full flex items-center justify-center text-xs" title="回到目錄">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+                <span class="text-gray-400 text-sm">2026/02/25</span>
+                <h3 class="text-xl font-semibold mt-2 text-white">眾神瀑布與阿克雷里</h3>
+                <p class="mt-4 text-gray-300 leading-relaxed">
+                    造訪壯麗的眾神瀑布，隨後前往北部之都阿克雷里，參觀獨特的阿克雷里教堂。
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4 justify-start md:justify-end">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Godafoss" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        眾神瀑布 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                     <a href="https://www.google.com/maps/search/?api=1&query=Akureyri+Church" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        阿克雷里教堂 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="absolute left-[24px] md:left-1/2 top-16 w-4 h-4 bg-cyan-400 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.8)] border-4 border-[#0b1016] transform -translate-x-1/2 z-10"></div>
+            
+            <div class="glass-card p-6 rounded-2xl order-2 md:ml-12">
+                 <div class="space-y-4">
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0"><i class="fa-solid fa-bed"></i></div>
+                        <div>
+                            <span class="text-gray-100">Acco Luxury Apartments 或同級</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-300 shrink-0"><i class="fa-solid fa-utensils"></i></div>
+                        <div>
+                            <span class="text-gray-100">三餐自理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 8 -->
+        <div id="day-8" class="relative grid md:grid-cols-2 gap-8 mb-24 reveal item-wrapper pt-8">
+            <div class="order-1 md:order-2 md:text-left flex flex-col justify-center md:pl-12">
+                <div class="flex items-center justify-start gap-3 mb-1">
+                    <h2 class="text-3xl font-bold text-cyan-400 font-['Outfit']">DAY 08</h2>
+                    <a href="#quick-nav" class="back-to-nav w-8 h-8 rounded-full flex items-center justify-center text-xs" title="回到目錄">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+                <span class="text-gray-400 text-sm">2026/02/26</span>
+                <h3 class="text-xl font-semibold mt-2 text-white">犀牛石與教會山</h3>
+                <p class="mt-4 text-gray-300 leading-relaxed">
+                    在布倫迪歐斯停留，欣賞海中奇岩犀牛石，並前往攝影師最愛的教會山。
+                </p>
+                 <div class="flex flex-wrap gap-2 mt-4">
+                     <a href="https://www.google.com/maps/search/?api=1&query=Blonduos" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        布倫迪歐斯 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Hvitserkur" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        犀牛石 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Kirkjufell" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        教會山 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="absolute left-[24px] md:left-1/2 top-16 w-4 h-4 bg-cyan-400 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.8)] border-4 border-[#0b1016] transform -translate-x-1/2 z-10"></div>
+
+            <div class="glass-card p-6 rounded-2xl order-2 md:order-1 md:mr-12">
+                 <div class="space-y-4">
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0"><i class="fa-solid fa-bed"></i></div>
+                        <div>
+                            <span class="text-gray-100">The Writer's Nest 或同級</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-300 shrink-0"><i class="fa-solid fa-utensils"></i></div>
+                        <div>
+                            <span class="text-gray-100">三餐自理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 9 -->
+        <div id="day-9" class="relative grid md:grid-cols-2 gap-8 mb-24 reveal item-wrapper pt-8">
+            <div class="md:text-right flex flex-col justify-center order-1 md:pr-12">
+                <div class="flex items-center justify-start md:justify-end gap-3 mb-1">
+                    <h2 class="text-3xl font-bold text-cyan-400 font-['Outfit']">DAY 09</h2>
+                    <a href="#quick-nav" class="back-to-nav w-8 h-8 rounded-full flex items-center justify-center text-xs" title="回到目錄">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+                <span class="text-gray-400 text-sm">2026/02/27</span>
+                <h3 class="text-xl font-semibold mt-2 text-white">斯奈山半島環遊</h3>
+                <p class="mt-4 text-gray-300 leading-relaxed">
+                    探索「冰島縮影」斯奈山半島，阿爾納斯塔皮的奇石與孤寂的布迪爾黑教堂。
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4 justify-start md:justify-end">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Snaefellsnes+Peninsula" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        斯奈山半島 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Arnarstapi" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        阿爾納斯塔皮 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Budakirkja" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        布迪爾黑教堂 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="absolute left-[24px] md:left-1/2 top-16 w-4 h-4 bg-cyan-400 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.8)] border-4 border-[#0b1016] transform -translate-x-1/2 z-10"></div>
+            
+            <div class="glass-card p-6 rounded-2xl order-2 md:ml-12">
+                 <div class="space-y-4">
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0"><i class="fa-solid fa-bed"></i></div>
+                        <div>
+                            <span class="text-gray-100">Garður Apartments 或同級</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-300 shrink-0"><i class="fa-solid fa-utensils"></i></div>
+                        <div>
+                            <span class="text-gray-100">三餐自理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Day 10 -->
+        <div id="day-10" class="relative grid md:grid-cols-2 gap-8 mb-24 reveal item-wrapper pt-8">
+             <div class="order-1 md:order-2 md:text-left flex flex-col justify-center md:pl-12">
+                <div class="flex items-center justify-start gap-3 mb-1">
+                    <h2 class="text-3xl font-bold text-gray-400 font-['Outfit']">DAY 10</h2>
+                    <a href="#quick-nav" class="back-to-nav w-8 h-8 rounded-full flex items-center justify-center text-xs" title="回到目錄">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+                <span class="text-gray-500 text-sm">2026/02/28</span>
+                <h3 class="text-xl font-semibold mt-2 text-white">返程</h3>
+                <p class="mt-4 text-gray-300 leading-relaxed">
+                    配合早班機離境，清晨在凱夫拉維克國際機場解散，帶著滿滿的回憶結束這趟完美的旅程。
+                </p>
+                 <div class="flex flex-wrap gap-2 mt-4">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Keflavik+Airport" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
+                        凱夫拉維克機場 <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    </a>
+                </div>
+            </div>
+            
+             <div class="absolute left-[24px] md:left-1/2 top-16 w-4 h-4 bg-gray-500 rounded-full border-4 border-[#0b1016] transform -translate-x-1/2 z-10"></div>
+             
+             <div class="order-2 md:order-1 md:mr-12"></div>
+        </div>
+
+        <!-- Leader Profile Section -->
+        <section id="leader-profile" class="mt-32 mb-16 reveal">
+            <div class="glass-card rounded-3xl p-8 md:p-12 relative overflow-hidden">
+                <!-- Decorative background elements -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
+                    <!-- Leader Image -->
+                    <div class="order-1 md:order-1 flex justify-center">
+                        <div class="leader-img-container w-64 h-64 md:w-80 md:h-80 group relative overflow-hidden rounded-2xl shadow-2xl">
+                            <!-- Image source updated to leader-1.jpg -->
+                            <img src="leader-1.jpg" alt="領隊 賀禎禎" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <!-- Overlay gradient -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1016]/80 via-transparent to-transparent opacity-60"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <span class="block text-xs uppercase tracking-widest text-cyan-400 mb-1">Tour Leader</span>
+                                <span class="text-2xl font-bold">賀禎禎</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leader Info -->
+                    <div class="order-2 md:order-2 text-center md:text-left">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 text-cyan-300 text-xs tracking-wider uppercase mb-6">
+                            <i class="fa-solid fa-camera"></i> Professional Photographer
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 font-['Outfit']">
+                            跟著 <span class="text-cyan-400">賀禎禎</span> 老師<br>看見不一樣的冰島
+                        </h2>
+                        <p class="text-gray-300 leading-relaxed mb-8 text-lg">
+                            專業的攝影老師，也是位外語領隊，從事攝影教學十數年，帶著學生前往世界各國旅行攝影，前往冰島十餘次，成立最專業的「冰島旅行資料庫」。這次行程由最專業的攝影老師 & 領隊，帶著你一同登上這段旅行，捕捉極光與大地最美的瞬間。
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                            <a href="https://hojenjen.com/" target="_blank" class="group relative px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                                <span class="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-300 group-hover:scale-110 transition-transform"><i class="fa-solid fa-camera-retro"></i></span>
+                                <span class="text-gray-100 font-medium">賀禎禎攝影教室</span>
+                            </a>
+                            
+                            <a href="https://replug.link/iceland-mainpage" target="_blank" class="group relative px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                                <span class="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-300 group-hover:scale-110 transition-transform"><i class="fa-solid fa-book-atlas"></i></span>
+                                <span class="text-gray-100 font-medium">冰島旅行資料庫</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="mb-32 reveal max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 font-['Outfit']">冰島映像 <span class="text-purple-400">Gallery</span></h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?q=80&w=2159&auto=format&fit=crop" alt="冰島風光">
+                    <div class="gallery-overlay">
+                        <span class="text-white font-bold">壯麗山河</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1520635792330-943ba6923414?q=80&w=2070&auto=format&fit=crop" alt="極光">
+                    <div class="gallery-overlay">
+                        <span class="text-white font-bold">舞動極光</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1504829857797-ddff29c27927?q=80&w=2070&auto=format&fit=crop" alt="瀑布">
+                    <div class="gallery-overlay">
+                        <span class="text-white font-bold">神之瀑布</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1551806235-a2d323fa896e?q=80&w=2071&auto=format&fit=crop" alt="冰洞">
+                    <div class="gallery-overlay">
+                        <span class="text-white font-bold">藍冰洞探險</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1518463858773-37203db22db3?q=80&w=2070&auto=format&fit=crop" alt="冰島馬">
+                    <div class="gallery-overlay">
+                        <span class="text-white font-bold">冰島馬</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preparation Checklist Section -->
+        <section id="preparation" class="mb-32 reveal max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 font-['Outfit']">行前準備 <span class="text-pink-400">Checklist</span></h2>
+            <!-- 調整 Grid 以適應 6 個項目：手機2列，平板3列，電腦5列 -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                
+                <!-- 1. 住宿 -->
+                <a href="https://replug.link/5d0c1702" target="_blank" class="glass-card p-6 rounded-2xl text-center group block hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-4 text-purple-300 prep-icon relative z-10">
+                        <i class="fa-solid fa-bed text-xl"></i>
+                    </div>
+                    <h4 class="text-white font-bold mb-2 text-sm md:text-base relative z-10">住宿須知</h4>
+                    <p class="text-xs text-gray-400 mb-3 relative z-10">有關天氣住宿，你該知道的</p>
+                    <span class="text-xs text-purple-400 group-hover:text-purple-300 flex items-center justify-center gap-1 relative z-10">
+                        點我閱讀 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </span>
+                </a>
+
+                <!-- 2. 天氣 -->
+                <a href="https://replug.link/b51bfa3c" target="_blank" class="glass-card p-6 rounded-2xl text-center group block hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4 text-blue-300 prep-icon relative z-10">
+                        <i class="fa-solid fa-snowflake text-xl"></i>
+                    </div>
+                    <h4 class="text-white font-bold mb-2 text-sm md:text-base relative z-10">天氣概況</h4>
+                    <p class="text-xs text-gray-400 mb-3 relative z-10">有關天氣，你該知道的</p>
+                    <span class="text-xs text-blue-400 group-hover:text-blue-300 flex items-center justify-center gap-1 relative z-10">
+                        點我閱讀 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </span>
+                </a>
+
+                <!-- 3. 攝影 -->
+                <a href="https://replug.link/75139e2d" target="_blank" class="glass-card p-6 rounded-2xl text-center group block hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-yellow-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-14 h-14 rounded-full bg-yellow-500/20 flex items-center justify-center mx-auto mb-4 text-yellow-300 prep-icon relative z-10">
+                        <i class="fa-solid fa-camera-retro text-xl"></i>
+                    </div>
+                    <h4 class="text-white font-bold mb-2 text-sm md:text-base relative z-10">攝影攻略</h4>
+                    <p class="text-xs text-gray-400 mb-3 relative z-10">攝影器材該怎麼帶</p>
+                    <span class="text-xs text-yellow-400 group-hover:text-yellow-300 flex items-center justify-center gap-1 relative z-10">
+                        點我閱讀 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </span>
+                </a>
+
+                <!-- 4. 衣物 -->
+                <a href="https://replug.link/db4a90d6" target="_blank" class="glass-card p-6 rounded-2xl text-center group block hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-pink-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-14 h-14 rounded-full bg-pink-500/20 flex items-center justify-center mx-auto mb-4 text-pink-300 prep-icon relative z-10">
+                        <i class="fa-solid fa-mitten text-xl"></i>
+                    </div>
+                    <h4 class="text-white font-bold mb-2 text-sm md:text-base relative z-10">穿搭指南</h4>
+                    <p class="text-xs text-gray-400 mb-3 relative z-10">冬天來冰島，該怎麼穿</p>
+                    <span class="text-xs text-pink-400 group-hover:text-pink-300 flex items-center justify-center gap-1 relative z-10">
+                        點我閱讀 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </span>
+                </a>
+
+                <!-- 5. 消費 -->
+                <a href="https://replug.link/552c200a" target="_blank" class="glass-card p-6 rounded-2xl text-center group block hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-green-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-14 h-14 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4 text-green-300 prep-icon relative z-10">
+                        <i class="fa-solid fa-credit-card text-xl"></i>
+                    </div>
+                    <h4 class="text-white font-bold mb-2 text-sm md:text-base relative z-10">付款消費</h4>
+                    <p class="text-xs text-gray-400 mb-3 relative z-10">如何付款、消費</p>
+                    <span class="text-xs text-green-400 group-hover:text-green-300 flex items-center justify-center gap-1 relative z-10">
+                        點我閱讀 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </span>
+                </a>
+
+                <!-- 6. 三餐須知 (New) -->
+                <a href="https://replug.link/3bf74b6b" target="_blank" class="glass-card p-6 rounded-2xl text-center group block hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-14 h-14 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-4 text-orange-300 prep-icon relative z-10">
+                        <i class="fa-solid fa-utensils text-xl"></i>
+                    </div>
+                    <h4 class="text-white font-bold mb-2 text-sm md:text-base relative z-10">三餐須知</h4>
+                    <p class="text-xs text-gray-400 mb-3 relative z-10">有關自理三餐，你該知道的</p>
+                    <span class="text-xs text-orange-400 group-hover:text-orange-300 flex items-center justify-center gap-1 relative z-10">
+                        點我閱讀 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </span>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Notes Section -->
+        <section id="notes" class="mb-24 reveal">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 font-['Outfit']">重要注意事項</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Aviation -->
+                <div class="glass-card rounded-2xl p-8 relative">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0">
+                            <i class="fa-solid fa-plane"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">航空篇</h3>
+                    </div>
+                    
+                    <!-- 簡易重點 -->
+                    <div class="note-summary mb-6">
+                        <ul class="note-summary-list">
+                            <li>全程使用團體經濟艙，無法預選座位。</li>
+                            <li>轉機需配合領隊引導，機票需依序使用。</li>
+                            <li>出發前七天繳交護照，團體票無退換價值。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 完整內容 (預設隱藏) -->
+                    <div class="note-details-content space-y-4 text-gray-400 text-sm leading-relaxed text-justify border-t border-white/10 pt-4">
+                        <p>航空公司座位安排：本行程全程使用『團體經濟艙』機票，不適用預先選位，座位是航空公司統一安排，因此同行者有可能無法安排在一起。</p>
+                        <p>如行程需經中站轉機飛往行程目的地者，中站轉機務必配合領隊的引導。依據IATA(國際航空運輸協會)規定，乘客需按照開立的機票依序搭乘使用，若中途有任一航段未搭乘，航空公司將視同放棄本次旅程，並且後續的所有機票航段（包含回程段）將全數作廢失效。後續所有的航段，旅客需自費重新購買新機票，敬請留意。</p>
+                        <p>因應航空公司機場的團體作業規定，請於出發七天前繳交護照予旅行社。</p>
+                        <p>機票皆依所使用航空公司的團體票規定作業，凡機票一經開票則無退、換票價值(無法退機票款)，依國外旅遊定型化契約規定，如該機票款超出解約賠償之金額，亦須由旅客負擔全額機票款。</p>
+                        <p>部分行程《範指前後段搭乘不同的航空公司》依航空公司規定，於香港機場轉機時，旅客必須於香港機場提領行李並重新辦理登機手續。因此，請旅客務必於出發前十五日提供護照影本供本公司辦理《香港電子簽證》，護照效期需滿6個月且出生地需為台灣。如被拒絕申請（若有先例請主動告知），並請持效期足夠之台胞證轉機。</p>
+                        <!-- 新增免責聲明與按鈕 -->
+                        <div class="mt-6 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2">
+                            <span class="text-xs text-gray-500">最後更新以獨角獸旅行社公佈為準</span>
+                            <a href="https://unicorn-tour.com/%E8%BC%95%E6%97%85%E8%A1%8C/" target="_blank" class="text-xs px-4 py-2 rounded-full bg-cyan-900/30 text-cyan-400 hover:bg-cyan-800/50 transition-all border border-cyan-500/20 flex items-center gap-1">
+                                點我看公告 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 展開按鈕 -->
+                    <button class="expand-btn w-full text-center text-sm text-cyan-400 hover:text-cyan-300 mt-2 transition-colors flex items-center justify-center gap-2 py-2 border-t border-white/5 hover:bg-white/5 rounded-b-lg" onclick="toggleNotes(this)">
+                        <span>展開完整條款</span> <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <!-- Traveler -->
+                <div class="glass-card rounded-2xl p-8 relative">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-300 shrink-0">
+                            <i class="fa-solid fa-user-group"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">旅客篇</h3>
+                    </div>
+
+                    <!-- 簡易重點 -->
+                    <div class="note-summary mb-6">
+                        <ul class="note-summary-list">
+                            <li>未成年需法定代理人同意書。</li>
+                            <li>房內嚴禁抽菸，違者須配合繳交高額罰金。</li>
+                            <li>特殊需求 (兒童餐/茹素/大床) 請於出發前15日提出。</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-details-content space-y-4 text-gray-400 text-sm leading-relaxed text-justify border-t border-white/10 pt-4">
+                        <p>未滿20歲之未成年人，未與法定代理人一同報名參加旅遊行程時，須得法定代理人之同意，報名始為有效！為確認報名有徵得法定代理人之同意，請將旅遊定型化契約書或同意書需有法定代理人簽名，報名手續始有效完成。</p>
+                        <p>團體旅遊時間安排需團員相互配合，為顧及全體旅客之權益，若有嬰幼兒同行時，可能無法妥適兼顧，所以請貴賓於報名時，需多方考量帶嬰幼兒同行可能產生的不便，以避免造成自身和其他團員的不悅與困擾。</p>
+                        <p>為考量旅客自身之旅遊安全，並顧及同團其他旅客之旅遊權益，凡年滿70歲以上或行動不便之貴賓，建議須有家人或友人同行，若無陪同者，請在預訂前如實告知，本公司將提供最適合的建議，並做出相應安排（以安全為優先）。</p>
+                        <p>團體安排之房型皆為禁菸房，請勿在房內抽菸；若逕行於房內抽菸，經查獲須配合各旅館規範繳交鉅額罰金，通常金額約在100-500歐元不等，實際金額依各飯店規範為主。</p>
+                        <p>如於行程中有特殊之需求，例如兒童餐、茹素或大床等，請於出發前15日提出以利作業。</p>
+                        <p>行程無法延長住宿天數、更改日期及航班，旅客若中途脫隊，視同自願放棄，恕不另外退費。</p>
+                        <p>行程於國外如遇塞車時，如塞車情形嚴重影響到行程或餐食的安排時，為維護旅遊品質及貴賓們的權益，本公司將斟酌調整並妥善安排旅遊行程。</p>
+                        <p>本行程所載之護照、簽證相關規定，對象均為持中華民國護照之旅客，內載有國民身分證統一編號的有效中華民國護照(護照需有半年以上效期)，若貴客擁有雙重國籍或持他國護照，請於報名時告知，則須再查明相關規定。</p>
+                        <p>重申歐盟加強查緝仿冒品，旅客出入境攜帶或穿著或購買仿冒商品，可處四年有期徒刑及37萬3千美金罰鍰。</p>
+                        <p>旅遊前或是旅途中，因天候因素、航班變更(取消)、交通工具取消或道路阻斷等不可抗力或不可歸責與旅行社之事由，導致無法依預定之旅程、交通、食宿或遊覽項目等履行時，為維護旅遊團體之安全利益，旅行社保留調整、變更行程之權利。</p>
+                        <!-- 新增免責聲明與按鈕 -->
+                        <div class="mt-6 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2">
+                            <span class="text-xs text-gray-500">最後更新以獨角獸旅行社公佈為準</span>
+                            <a href="https://unicorn-tour.com/%E8%BC%95%E6%97%85%E8%A1%8C/" target="_blank" class="text-xs px-4 py-2 rounded-full bg-cyan-900/30 text-cyan-400 hover:bg-cyan-800/50 transition-all border border-cyan-500/20 flex items-center gap-1">
+                                點我看公告 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <button class="expand-btn w-full text-center text-sm text-cyan-400 hover:text-cyan-300 mt-2 transition-colors flex items-center justify-center gap-2 py-2 border-t border-white/5 hover:bg-white/5 rounded-b-lg" onclick="toggleNotes(this)">
+                        <span>展開完整條款</span> <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <!-- Accommodation -->
+                <div class="glass-card rounded-2xl p-8 relative">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-300 shrink-0">
+                            <i class="fa-solid fa-bed"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">住宿篇</h3>
+                    </div>
+
+                    <!-- 簡易重點 -->
+                    <div class="note-summary mb-6">
+                        <ul class="note-summary-list">
+                            <li>團體房型多為兩小床，三人房多為加床。</li>
+                            <li>若需單人入住，需補單人房差。</li>
+                            <li>歐洲環保特性，部分飯店僅設暖氣無冷氣。</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-details-content space-y-4 text-gray-400 text-sm leading-relaxed text-justify border-t border-white/10 pt-4">
+                        <p>團體安排之房型均為兩小床房型，若指定大床房型，需視飯店提供為主，恕無法保證。如需求三人房，大部份飯店無三張床之房型，通常為雙人房加一床，許多飯店限小孩(12歲以下)才能加床，一大二小或二大一小合住，加床多為摺疊床或沙發床，加上房間空間有限，勢必影響住宿品質，故建議避免需求三人同房。備註：如飯店無加床服務時，旅客需入住單人房時需繳交單人房差費用。</p>
+                        <p>團體安排之房型無法指定連通房、同行親友若指定在同樓層或鄰近房間，將向飯店提出需求，但無法保證。</p>
+                        <p>飯店房型為兩人一室，若無同行者一同報名參加，本公司得協助安排與當團其他同性別團員或領隊分房；單人配房由本公司自行採隨機分配，恕無法指定或變更，出發後若欲補價差變更為單人住宿，需依飯店實際房況為準，非均可變更。</p>
+                        <p>若需指定單人入住，請於報名時主動告知，並補單人房價差。備註：單人房差(本行程所指單人房為單人房單人床房型)。</p>
+                        <p>若遇商展或節慶期間，飯店遇滿房或是房間數不夠，本公司擁有變更或調整行程之權利，將會尋找同等級替代飯店及住宿點；尤其島上之住宿因房間數有限，旺季期間，若同一家飯店房數不足，將使用兩家以上同等級之飯店，敬請知悉！</p>
+                        <p>歐洲因環保及氣候特性，冬季寒冷時間較長，夏季炎熱時間較短，且夏季日夜溫差大夜晚涼爽，因此部分飯店房間僅設置冬天必備之暖氣設備，無冷氣設備，敬請諒解。</p>
+                        <!-- 新增免責聲明與按鈕 -->
+                        <div class="mt-6 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2">
+                            <span class="text-xs text-gray-500">最後更新以獨角獸旅行社公佈為準</span>
+                            <a href="https://unicorn-tour.com/%E8%BC%95%E6%97%85%E8%A1%8C/" target="_blank" class="text-xs px-4 py-2 rounded-full bg-cyan-900/30 text-cyan-400 hover:bg-cyan-800/50 transition-all border border-cyan-500/20 flex items-center gap-1">
+                                點我看公告 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <button class="expand-btn w-full text-center text-sm text-cyan-400 hover:text-cyan-300 mt-2 transition-colors flex items-center justify-center gap-2 py-2 border-t border-white/5 hover:bg-white/5 rounded-b-lg" onclick="toggleNotes(this)">
+                        <span>展開完整條款</span> <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <!-- Other -->
+                <div class="glass-card rounded-2xl p-8 relative">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-300 shrink-0">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">其他說明</h3>
+                    </div>
+
+                    <!-- 簡易重點 -->
+                    <div class="note-summary mb-6">
+                        <ul class="note-summary-list">
+                            <li>國外商店週日及假日多休息，購物請提早。</li>
+                            <li>歐洲產品未含 ETIAS 費用。</li>
+                            <li>建議旅客自行加保旅遊平安險及旅遊不便險。</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-details-content space-y-4 text-gray-400 text-sm leading-relaxed text-justify border-t border-white/10 pt-4">
+                        <p>貼心提醒：國外多數商店會於星期日及國定假日休息，旅客如有明確購物計畫，請提早告知旅遊專員或領隊，以便建議出發日期或調整購物城市。</p>
+                        <p>行程景點與餐食之照片，實際依隨時節、拍攝角度而有所不同，敬請諒察。</p>
+                        <p>其它未盡事項請依照「國外旅遊定型化契約書」之相關條款規定為主。</p>
+                        <p>歐洲銷售產品，皆未含ETIAS費用。</p>
+                        <p>本行程包含500萬旅行業責任保險+20萬海外意外醫療保額及旅行社履約保證保險。【旅客未滿15歲或70歲以上，依保險公司規定最高旅責250萬元+20萬海外意外醫療保額】。</p>
+                        <p>依「旅遊定型化契約」中規定，本公司有告知旅客自行投保旅行平安保險之義務。因此，為了確保您的權益及避免出國旅遊可能產生的風險，特別提醒及建議您，可視需要自行購買旅遊平安保險及旅遊不便險。</p>
+                        <!-- 新增免責聲明與按鈕 -->
+                        <div class="mt-6 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2">
+                            <span class="text-xs text-gray-500">最後更新以獨角獸旅行社公佈為準</span>
+                            <a href="https://unicorn-tour.com/%E8%BC%95%E6%97%85%E8%A1%8C/" target="_blank" class="text-xs px-4 py-2 rounded-full bg-cyan-900/30 text-cyan-400 hover:bg-cyan-800/50 transition-all border border-cyan-500/20 flex items-center gap-1">
+                                點我看公告 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <button class="expand-btn w-full text-center text-sm text-cyan-400 hover:text-cyan-300 mt-2 transition-colors flex items-center justify-center gap-2 py-2 border-t border-white/5 hover:bg-white/5 rounded-b-lg" onclick="toggleNotes(this)">
+                        <span>展開完整條款</span> <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q&A Section (New) -->
+        <section id="qa" class="mb-24 reveal max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 font-['Outfit']">常見問答 <span class="text-green-400">Q&A</span></h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <!-- Q1 -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="text-cyan-300 font-bold text-lg mb-2">Q1：團費的計算?</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">A1：團費 139,000 包含「機票以外」的所有消費，且不包含自理餐費。</p>
+                </div>
+
+                <!-- Q2 -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="text-cyan-300 font-bold text-lg mb-2">Q2：什麼是現地集合?</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">A2：2/19 當天，需自行抵達冰島「KEF 凱夫拉維克機場」，開始一天的行程。</p>
+                </div>
+
+                <!-- Q3 -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="text-cyan-300 font-bold text-lg mb-2">Q3：我可以從台灣隨同領隊出發嗎?</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">A3：沒有問題，本團有「雙領隊」，其中領隊 - 賀禎禎，將帶著大家從桃機出發，直到返抵國門。</p>
+                </div>
+
+                <!-- Q4 -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="text-cyan-300 font-bold text-lg mb-2">Q4：我想請你代訂機票 (與費用查詢)</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-3">A4：請加入我們的 Line 群組，有專人為您服務。</p>
+                    <a href="https://line.me/R/ti/g/VKumE3NSJG" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#06c755]/20 text-[#06c755] border border-[#06c755]/30 text-xs hover:bg-[#06c755]/30 transition-colors">
+                        <i class="fa-brands fa-line"></i> 加入群組詢問
+                    </a>
+                </div>
+
+                <!-- Q5 -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="text-cyan-300 font-bold text-lg mb-2">Q5：我本身飲食有額外需求 (如吃素)</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">A5：冰島旅行用餐較為特別，三餐為「自理」，但會有經驗豐富的領隊提供協助，可參考注意事項中的「三餐須知」。</p>
+                </div>
+
+                <!-- Q6 -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="text-cyan-300 font-bold text-lg mb-2">Q6：我不會拍照，能參加嗎?</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">A6：本團特色，有專業的「攝影老師 - 賀禎禎」，隨團攝影教學，並且為您留下精美的旅行回憶。</p>
+                </div>
+
+                <!-- Q7 (New) -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="text-cyan-300 font-bold text-lg mb-2">Q7：住宿的房間是?</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">A7：以酒店式公寓或民宿為主，二人一間。</p>
+                </div>
+
+                <!-- Q8 (New) -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="text-cyan-300 font-bold text-lg mb-2">Q8：每日行程大概如何</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">A8：早上 9 點出發，晚上視時間機動調整回飯店</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="mb-24 reveal max-w-4xl mx-auto px-4 text-center">
+            <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                <!-- Decorative background -->
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-600"></div>
+                
+                <h2 class="text-3xl font-bold text-white mb-4 font-['Outfit']">旅程討論區</h2>
+                <p class="text-gray-300 mb-8">對行程有疑問？想尋找旅伴？<br>歡迎加入我們的 Line 社群，與領隊及團員一同討論！</p>
+                
+                <a href="https://line.me/R/ti/g/VKumE3NSJG" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#06c755] hover:bg-[#05b64b] text-white font-bold transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(6,199,85,0.3)]">
+                    <i class="fa-brands fa-line text-2xl"></i>
+                    <span>加入 Line 社群討論</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Information -->
+    <footer class="bg-[#0b1016]/80 backdrop-blur-xl py-12 border-t border-gray-800 text-sm">
+        <div class="max-w-6xl mx-auto px-6">
+            
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                
+                <!-- Cost -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-lg border-l-4 border-cyan-500 pl-3">費用說明</h4>
+                    <p class="text-gray-400 leading-6">
+                        費用包含：500萬旅行業責任保險 + 20萬海外意外醫療保額。
+                    </p>
+                </div>
+
+                <!-- Meals -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-lg border-l-4 border-yellow-500 pl-3">餐食備註</h4>
+                    <p class="text-gray-400 leading-6">
+                        本網頁版本顯示餐食多為「自理」，與圖片版本可能略有不同，請以實際預訂資訊為準。
+                    </p>
+                </div>
+
+                <!-- Agency Info -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-lg border-l-4 border-pink-500 pl-3">旅行社資訊</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><span class="text-gray-500 block text-xs uppercase tracking-wider mb-1">Company</span> 三亞旅行社有限公司</li>
+                        <li><span class="text-gray-500 block text-xs uppercase tracking-wider mb-1">Address</span> 高雄市前鎮區鎮興路220號</li>
+                        <li><span class="text-gray-500 block text-xs uppercase tracking-wider mb-1">Contact</span> 07-841-5288</li>
+                        <li><span class="text-gray-500 block text-xs uppercase tracking-wider mb-1">License</span> 甲種旅行業 交觀甲05341號 品保高0551號</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Detailed Agency Info Footer Bottom -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <div class="text-center md:text-left">
+                    <p class="mb-1">負責人：張志國 | 統一編號：59372815</p>
+                    <p>Email: 537tour@gmail.com | LINE: @537tour</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p>© 2026 Unicorn Tour. All rights reserved.</p>
+                    <p class="mt-1">Designed with Vibe Coding</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Reveal Animation Logic
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Notes Toggle Function
+        function toggleNotes(btn) {
+            const content = btn.previousElementSibling;
+            const summary = btn.previousElementSibling.previousElementSibling;
+            const isExpanded = content.classList.contains('expanded');
+            const span = btn.querySelector('span');
+            
+            if (isExpanded) {
+                content.classList.remove('expanded');
+                btn.classList.remove('expanded');
+                span.textContent = '展開完整條款';
+                // 可選：收起時重新顯示 summary，或保持不動
+                // summary.style.display = 'block'; 
+            } else {
+                content.classList.add('expanded');
+                btn.classList.add('expanded');
+                span.textContent = '收起條款';
+                // 可選：展開時隱藏 summary
+                // summary.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
