@@ -280,6 +280,19 @@
             transform: scale(1.1) rotate(5deg);
             color: #fff;
         }
+
+        /* 行程詳細內容樣式 (Itinerary Details) */
+        .itinerary-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .itinerary-details.expanded {
+            max-height: 500px; /* 預留足夠高度 */
+            opacity: 1;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -458,12 +471,6 @@
             </div>
         </div>
 
-        <!-- Day 3 to Day 10 (Rest of the content) -->
-        <!-- ... (以下內容保持不變，請使用上一個版本或直接複製 Day 3 ~ Footer) ... -->
-        <!-- 為了節省篇幅，這裡省略了 Day 3 到 Footer 的程式碼，請確保在實際檔案中保留它們 -->
-        <!-- ... -->
-        <!-- 為了完整性，這裡補上 Day 3 ~ Footer 的內容 -->
-        
         <!-- Day 3 -->
         <div id="day-3" class="relative grid md:grid-cols-2 gap-8 mb-24 reveal item-wrapper pt-8">
             <div class="md:text-right flex flex-col justify-center order-1 md:pr-12">
@@ -532,8 +539,15 @@
                 <span class="text-gray-400 text-sm">2026/02/22</span>
                 <h3 class="text-xl font-semibold mt-2 text-white">藍冰洞與鑽石沙灘</h3>
                 <p class="mt-4 text-gray-300 leading-relaxed">
-                    深入瓦特納冰川的藍冰洞探險，隨後前往如夢似幻的傑古沙龍冰河湖與鑽石沙灘。
+                    當旅程深入冰島東南部，一場令人屏息的極地體驗即將展開。穿上冰爪與安全裝備，踏上冰川健行之路，專業嚮導帶領下，深入迷人的藍冰洞探險，透過光線折射，頭頂的冰層閃耀著透明藍光，仿若走入地心水晶宮殿，每一步都震撼人心。傑古沙龍冰河湖面上漂浮著各式大小冰塊，從瓦特納冰原崩解入海，藍與白交錯、倒映天光，場景寧靜而宏偉。湖水流向海岸，冰塊隨之被沖上對岸的鑽石沙灘如碎鑽鋪灑，日光下閃爍著奇幻光芒，是大自然最精緻的藝術展場。
                 </p>
+
+                <!-- Day 4 Photo Gallery -->
+                <div class="grid grid-cols-2 gap-2 mt-6 mb-4">
+                    <img src="D41.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500320821405-8fc1732209ca?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-32 w-full cursor-pointer" alt="傑古沙龍冰河湖">
+                    <img src="D42.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1505562234673-e5ebd053024e?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-32 w-full cursor-pointer" alt="鑽石沙灘">
+                </div>
+
                 <div class="flex flex-wrap gap-2 mt-4">
                      <a href="https://www.google.com/maps/search/?api=1&query=Jokulsarlon+Glacier+Lagoon" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
                         傑古沙龍冰河湖 <i class="fa-solid fa-location-dot text-gray-400"></i>
@@ -551,15 +565,31 @@
             <div class="glass-card p-6 rounded-2xl order-2 md:order-1 md:mr-12">
                  <div class="space-y-4">
                      <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-300 shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                             <span class="block text-xs text-gray-400 uppercase tracking-wide">Attractions</span>
+                            <span class="text-gray-100">傑古沙龍冰河湖、鑽石沙灘</span>
+                        </div>
+                    </div>
+                     <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0"><i class="fa-solid fa-person-hiking"></i></div>
+                        <div>
+                             <span class="block text-xs text-gray-400 uppercase tracking-wide">Activities</span>
+                            <span class="text-gray-100">冰川健行與藍冰洞探險</span>
+                        </div>
+                    </div>
+                     <div class="flex items-start gap-3">
                         <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 shrink-0"><i class="fa-solid fa-bed"></i></div>
                         <div>
+                            <span class="block text-xs text-gray-400 uppercase tracking-wide">Accommodation</span>
                             <span class="text-gray-100">Milk Factory 或同級</span>
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
                         <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-300 shrink-0"><i class="fa-solid fa-utensils"></i></div>
                         <div>
-                            <span class="text-gray-100">三餐自理</span>
+                            <span class="block text-xs text-gray-400 uppercase tracking-wide">Meals</span>
+                            <span class="text-gray-100">早餐：自理 午餐：自理 晚餐：自理</span>
                         </div>
                     </div>
                 </div>
@@ -1000,7 +1030,6 @@
 
         <!-- Notes Section -->
         <section id="notes" class="mb-24 reveal">
-            <!-- ... (Notes Content same as before) ... -->
             <h2 class="text-3xl font-bold text-center text-white mb-12 font-['Outfit']">重要注意事項</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 
@@ -1026,7 +1055,6 @@
                     <div class="note-details-content space-y-4 text-gray-400 text-sm leading-relaxed text-justify border-t border-white/10 pt-4">
                         <p>航空公司座位安排：本行程全程使用『團體經濟艙』機票，不適用預先選位，座位是航空公司統一安排，因此同行者有可能無法安排在一起。</p>
                         <p>如行程需經中站轉機飛往行程目的地者，中站轉機務必配合領隊的引導。依據IATA(國際航空運輸協會)規定，乘客需按照開立的機票依序搭乘使用，若中途有任一航段未搭乘，航空公司將視同放棄本次旅程，並且後續的所有機票航段（包含回程段）將全數作廢失效。後續所有的航段，旅客需自費重新購買新機票，敬請留意。</p>
-                        <p>因應航空公司機場的團體作業規定，請於出發七天前繳交護照予旅行社。</p>
                         <p>機票皆依所使用航空公司的團體票規定作業，凡機票一經開票則無退、換票價值(無法退機票款)，依國外旅遊定型化契約規定，如該機票款超出解約賠償之金額，亦須由旅客負擔全額機票款。</p>
                         <p>部分行程《範指前後段搭乘不同的航空公司》依航空公司規定，於香港機場轉機時，旅客必須於香港機場提領行李並重新辦理登機手續。因此，請旅客務必於出發前十五日提供護照影本供本公司辦理《香港電子簽證》，護照效期需滿6個月且出生地需為台灣。如被拒絕申請（若有先例請主動告知），並請持效期足夠之台胞證轉機。</p>
                         <!-- 新增免責聲明與按鈕 -->
