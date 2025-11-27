@@ -352,6 +352,14 @@
         </div>
     </nav>
 
+    <!-- Iceland Map Section (NEW) -->
+    <section class="max-w-5xl mx-auto px-4 pt-12 pb-4 reveal">
+        <div class="glass-card p-2 rounded-2xl">
+            <!-- 這裡的 src 改成 V2.jpg，請確保檔案名稱為 V2.jpg -->
+            <img src="V2.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1574770145306-9903a73393c5?auto=format&fit=crop&w=1200'" alt="冰島環島地圖" class="w-full h-auto rounded-xl shadow-lg">
+        </div>
+    </section>
+
     <!-- Itinerary Section -->
     <main class="relative max-w-5xl mx-auto px-4 py-16">
         <div class="timeline-line"></div>
@@ -488,7 +496,6 @@
 
                 <!-- Day 3 Photo Gallery -->
                 <div class="grid grid-cols-2 gap-2 mt-6 mb-4">
-                    <!-- 使用 onerror 自動切換到 Unsplash 作為 fallback，確保即使沒有下載圖片也不會破圖 -->
                     <img src="D31.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-24 md:h-32 w-full cursor-pointer" alt="塞里雅蘭瀑布">
                     <img src="D32.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504829857797-ddff29c27927?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-24 md:h-32 w-full cursor-pointer" alt="斯科加爾瀑布">
                     <img src="D33.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1553163147-622536082d32?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-24 md:h-32 w-full cursor-pointer" alt="黑沙灘">
@@ -608,23 +615,8 @@
                 <span class="text-gray-400 text-sm">2026/02/23</span>
                 <h3 class="text-xl font-semibold mt-2 text-white">東部峽灣的寧靜</h3>
                 <p class="mt-4 text-gray-300 leading-relaxed">
-                    離開南岸的壯闊奔放，我們駛入風格迥異的東部峽灣地區，這裡是冰島最低調卻最迷人的一段風景線。道路沿著曲折海岸蜿蜒前行，遠山如畫、海灣幽靜，一座座小漁村靜靜嵌入峽灣之間，像極了時間遺忘的角落。都皮沃古爾這座慢城認證的小鎮擁有超越歲月的寧靜與藝術氣息。沿途開車穿越連綿山谷與峽灣群，眼前景致不斷轉換，宛如夢境中的場景，終點抵達埃伊爾斯塔濟，這是東部地區的交通與生活重鎮，座落於湖畔與森林之間，是探索東部自然與傳統文化的最佳據點。
+                    穿越蜿蜒的東部峽灣，途經都皮沃古爾小鎮，最終抵達埃伊爾斯塔濟。
                 </p>
-
-                <!-- Day 5 Photo Gallery -->
-                <div class="grid grid-cols-2 gap-2 mt-6 mb-4 h-48 md:h-64">
-                    <div class="col-span-2 h-full relative overflow-hidden rounded-lg shadow-md group">
-                        <img src="D51.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1496769339179-7eab73e87e69?auto=format&fit=crop&w=1200'" class="object-cover w-full h-full hover:scale-105 transition-transform duration-700 cursor-pointer" alt="東部峽灣">
-                        <div class="absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black/70 to-transparent text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">東部峽灣</div>
-                    </div>
-                    <div class="h-32 relative overflow-hidden rounded-lg shadow-md group">
-                        <img src="D52.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1508144753681-9986d4df99b3?auto=format&fit=crop&w=600'" class="object-cover w-full h-full hover:scale-105 transition-transform duration-700 cursor-pointer" alt="都皮沃古爾">
-                    </div>
-                    <div class="h-32 relative overflow-hidden rounded-lg shadow-md group">
-                        <img src="D53.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1463693396721-8ca0cfa2b3b5?auto=format&fit=crop&w=600'" class="object-cover w-full h-full hover:scale-105 transition-transform duration-700 cursor-pointer" alt="埃伊爾斯塔濟">
-                    </div>
-                </div>
-
                 <div class="flex flex-wrap gap-2 mt-4 justify-start md:justify-end">
                     <a href="https://www.google.com/maps/search/?api=1&query=East+Fjords+Iceland" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
                         東部峽灣 <i class="fa-solid fa-location-dot text-gray-400"></i>
@@ -641,7 +633,7 @@
             
             <div class="glass-card p-6 rounded-2xl order-2 md:ml-12">
                  <div class="space-y-4">
-                    <div class="flex items-start gap-3">
+                     <div class="flex items-start gap-3">
                         <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-300 shrink-0"><i class="fa-solid fa-location-dot"></i></div>
                         <div>
                              <span class="block text-xs text-gray-400 uppercase tracking-wide">Attractions</span>
@@ -678,23 +670,8 @@
                 <span class="text-gray-400 text-sm">2026/02/24</span>
                 <h3 class="text-xl font-semibold mt-2 text-white">米湖與地熱溫泉</h3>
                 <p class="mt-4 text-gray-300 leading-relaxed">
-                    從湖畔靜謐出發，首先造訪的是沃克溫泉，座落於烏拉夫斯達爾湖上的漂浮溫泉。這是全冰島唯一坐落於湖面中央的地熱湯池，溫泉水質純淨可飲，身處蒸氣瀰漫的湖光山色之間，如漂浮在自然的懷抱，讓旅人洗去風塵與疲憊。隨後前往神秘的Grjótagjá地熱裂縫。這個隱密的熔岩洞穴藏著溫暖而寧靜的地下溫泉，藍光閃動於石壁間，曾是當地人私藏的秘湯勝地，也因《冰與火之歌》而聲名遠播。再來走進彷彿來自魔法世界的黑暗城堡。這片大規模的熔岩遺跡奇形怪狀、千姿百態，傳說中是冰島妖精與巨魔的棲息地，也是北極圈內最迷人的玄武岩迷宮。最後抵達壯麗的米湖地區，湖泊與火山、地熱與濕地相互交融，是觀鳥、攝影與靜心沉澱的聖地。
+                    探索神祕的黑暗城堡與 Grjótagjá 地洞溫泉，並在沃克溫泉享受極致放鬆。
                 </p>
-                
-                <!-- Day 6 Photo Gallery -->
-                <div class="grid grid-cols-2 gap-2 mt-6 mb-4 h-48 md:h-64">
-                    <div class="col-span-2 h-full relative overflow-hidden rounded-lg shadow-md group">
-                        <img src="D61.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1508349074468-084099282367?auto=format&fit=crop&w=1200'" class="object-cover w-full h-full hover:scale-105 transition-transform duration-700 cursor-pointer" alt="Grjótagjá">
-                        <div class="absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black/70 to-transparent text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">Grjótagjá 地洞</div>
-                    </div>
-                    <div class="h-32 relative overflow-hidden rounded-lg shadow-md group">
-                        <img src="D62.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1533425055041-642427b8b917?auto=format&fit=crop&w=600'" class="object-cover w-full h-full hover:scale-105 transition-transform duration-700 cursor-pointer" alt="黑暗城堡">
-                    </div>
-                    <div class="h-32 relative overflow-hidden rounded-lg shadow-md group">
-                        <img src="D63.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600'" class="object-cover w-full h-full hover:scale-105 transition-transform duration-700 cursor-pointer" alt="米湖地熱">
-                    </div>
-                </div>
-
                 <div class="flex flex-wrap gap-2 mt-4">
                     <a href="https://www.google.com/maps/search/?api=1&query=Vok+Baths" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-red-500/20 text-red-200 border border-red-500/30">
                         ♨️ 沃克溫泉 <i class="fa-solid fa-location-dot text-red-400"></i>
@@ -714,7 +691,7 @@
 
             <div class="glass-card p-6 rounded-2xl order-2 md:order-1 md:mr-12">
                  <div class="space-y-4">
-                    <div class="flex items-start gap-3">
+                     <div class="flex items-start gap-3">
                         <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-300 shrink-0"><i class="fa-solid fa-location-dot"></i></div>
                         <div>
                              <span class="block text-xs text-gray-400 uppercase tracking-wide">Attractions</span>
@@ -758,15 +735,8 @@
                 <span class="text-gray-400 text-sm">2026/02/25</span>
                 <h3 class="text-xl font-semibold mt-2 text-white">眾神瀑布與阿克雷里</h3>
                 <p class="mt-4 text-gray-300 leading-relaxed">
-                    當冰島北部的山谷漸漸展開，一道壯麗水幕在眼前轟然落下，這裡是眾神瀑布，冰島最具傳奇色彩的瀑布之一。相傳公元1000年，冰島正式改信基督教，律法宣告者將諸神雕像投入瀑布，以此告別過去、擁抱新時代，因此得名「眾神瀑布」。短暫車程後來到北部的溫柔首都阿克雷里，這座迷人的港灣小鎮坐落在峽灣深處，擁有彩色屋頂、花卉盛開的街道與文化氣息濃厚的藝廊與書店。鎮上的阿克雷里教堂高踞丘陵之上，是城市的視覺焦點。
+                    造訪壯麗的眾神瀑布，隨後前往北部之都阿克雷里，參觀獨特的阿克雷里教堂。
                 </p>
-
-                <!-- Day 7 Photo Gallery -->
-                <div class="grid grid-cols-2 gap-2 mt-6 mb-4">
-                    <img src="D71.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1533052966424-1145c404a081?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-32 w-full cursor-pointer" alt="眾神瀑布">
-                    <img src="D72.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1534803730592-d72649086b4d?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-32 w-full cursor-pointer" alt="阿克雷里教堂">
-                </div>
-
                 <div class="flex flex-wrap gap-2 mt-4 justify-start md:justify-end">
                     <a href="https://www.google.com/maps/search/?api=1&query=Godafoss" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
                         眾神瀑布 <i class="fa-solid fa-location-dot text-gray-400"></i>
@@ -815,15 +785,8 @@
                 <span class="text-gray-400 text-sm">2026/02/26</span>
                 <h3 class="text-xl font-semibold mt-2 text-white">犀牛石與教會山</h3>
                 <p class="mt-4 text-gray-300 leading-relaxed">
-                    踏上冰島西北角的探索之路，旅程從寧靜樸實的濱海小鎮布倫迪歐斯開始。這座鎮落坐擁大西洋與河口交會之景，以其絕佳的釣魚河流、溫泉與特色教堂聞名。沿著海岸漫步，遠離觀光人潮，感受最原味的冰島慢節奏。隨後前往冰島北部峽灣海岸，一座彷彿來自傳說的巨石出現在潮間帶，犀牛石這座高15公尺的玄武岩海蝕柱屹立海中，外型酷似飲水的犀牛，也有人說像一條海怪或巨龍。最終抵達斯奈山半島的象徵教會山，冰島最上鏡的山峰之一，特別是冬季與極光共舞的時刻，令人屏息。
+                    在布倫迪歐斯停留，欣賞海中奇岩犀牛石，並前往攝影師最愛的教會山。
                 </p>
-
-                <!-- Day 8 Photo Gallery -->
-                <div class="grid grid-cols-2 gap-2 mt-6 mb-4">
-                    <img src="D82.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-32 w-full cursor-pointer" alt="犀牛石">
-                    <img src="D83.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-32 w-full cursor-pointer" alt="教會山">
-                </div>
-
                  <div class="flex flex-wrap gap-2 mt-4">
                      <a href="https://www.google.com/maps/search/?api=1&query=Blonduos" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
                         布倫迪歐斯 <i class="fa-solid fa-location-dot text-gray-400"></i>
@@ -875,19 +838,8 @@
                 <span class="text-gray-400 text-sm">2026/02/27</span>
                 <h3 class="text-xl font-semibold mt-2 text-white">斯奈山半島環遊</h3>
                 <p class="mt-4 text-gray-300 leading-relaxed">
-                    展開環繞斯奈山半島的壯麗巡禮，走進被譽為「冰島縮影」的風景長廊。在這片半島上，冰川覆蓋的火山、熔岩原、峽灣與海蝕岩拱交織成一幅動態地貌畫卷。沿著海岸來到詩意十足的港灣村落Arnarstapi。這座迷你漁村擁有壯觀的海蝕拱門、玄武岩峭壁與海鷗群舞的畫面，步道沿岸如雕刻展廊。接著前往位於黑色熔岩原上的布迪爾黑教堂，這座簡約的黑色木教堂孤立在原野與海天之間，靜謐如畫，既神聖又孤傲，是冰島攝影與婚紗取景的聖地，也象徵著信仰與自然共存的極致之美。結束半島之行後，驅車返回首都雷克雅維克市區，展開一段輕鬆的午後散策。可漫步於Laugavegur購物街、造訪Harpa音樂廳或在舊港區品嚐地道咖啡與甜點，將一日的山海壯闊轉化為都市裡的詩意靜好。
+                    探索「冰島縮影」斯奈山半島，阿爾納斯塔皮的奇石與孤寂的布迪爾黑教堂。
                 </p>
-
-                <!-- Day 9 Photo Gallery -->
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-6 mb-4">
-                    <img src="D91.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-32 w-full cursor-pointer" alt="布迪爾黑教堂">
-                    <img src="D92.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1532691937791-76a2e486c488?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-32 w-full cursor-pointer" alt="阿爾納斯塔皮">
-                    <img src="D93.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-32 w-full cursor-pointer" alt="教堂">
-                    <img src="D94.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1548896040-3502a847013a?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-32 w-full cursor-pointer" alt="Harpa音樂廳">
-                    <img src="D95.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1531863729427-9cb4326d841d?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-32 w-full cursor-pointer" alt="維京船骨架">
-                    <img src="D96.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1532562634646-b82940394045?auto=format&fit=crop&w=800'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500 object-cover h-32 w-full cursor-pointer" alt="雷克雅維克大教堂">
-                </div>
-
                 <div class="flex flex-wrap gap-2 mt-4 justify-start md:justify-end">
                     <a href="https://www.google.com/maps/search/?api=1&query=Snaefellsnes+Peninsula" target="_blank" class="map-pill px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/10">
                         斯奈山半島 <i class="fa-solid fa-location-dot text-gray-400"></i>
@@ -954,10 +906,6 @@
         </div>
 
         <!-- Leader Profile Section -->
-        <!-- ... (Rest of the file from Preparation Checklist to Footer) ... -->
-        <!-- 為了節省篇幅，後續的 Leader Profile, Gallery, Checklist, Notes, Q&A, Footer 程式碼請維持不變 -->
-        <!-- 請確保在實際檔案中保留完整的下半部分程式碼 -->
-        
         <section id="leader-profile" class="mt-32 mb-16 reveal">
             <div class="glass-card rounded-3xl p-8 md:p-12 relative overflow-hidden">
                 <!-- Decorative background elements -->
@@ -1252,6 +1200,45 @@
                             <p class="text-purple-200 font-medium mb-0"><i class="fa-solid fa-circle-info mr-1"></i> 備註：依住宿地點不同，可能是 4-8人 房的酒店式公寓或民宿有2-4間房間，二人一間。</p>
                         </div>
 
+                        <!-- 新增免責聲明與按鈕 -->
+                        <div class="mt-6 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2">
+                            <span class="text-xs text-gray-500">最後更新以獨角獸旅行社公佈為準</span>
+                            <a href="https://unicorn-tour.com/%E8%BC%95%E6%97%85%E8%A1%8C/" target="_blank" class="text-xs px-4 py-2 rounded-full bg-cyan-900/30 text-cyan-400 hover:bg-cyan-800/50 transition-all border border-cyan-500/20 flex items-center gap-1">
+                                點我看公告 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <button class="expand-btn w-full text-center text-sm text-cyan-400 hover:text-cyan-300 mt-2 transition-colors flex items-center justify-center gap-2 py-2 border-t border-white/5 hover:bg-white/5 rounded-b-lg" onclick="toggleNotes(this)">
+                        <span>展開完整條款</span> <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <!-- Other -->
+                <div class="glass-card rounded-2xl p-8 relative">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-300 shrink-0">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">其他說明</h3>
+                    </div>
+
+                    <!-- 簡易重點 -->
+                    <div class="note-summary mb-6">
+                        <ul class="note-summary-list">
+                            <li>國外商店週日及假日多休息，購物請提早。</li>
+                            <li>歐洲產品未含 ETIAS 費用。</li>
+                            <li>建議旅客自行加保旅遊平安險及旅遊不便險。</li>
+                        </ul>
+                    </div>
+
+                    <div class="note-details-content space-y-4 text-gray-400 text-sm leading-relaxed text-justify border-t border-white/10 pt-4">
+                        <p>貼心提醒：國外多數商店會於星期日及國定假日休息，旅客如有明確購物計畫，請提早告知旅遊專員或領隊，以便建議出發日期或調整購物城市。</p>
+                        <p>行程景點與餐食之照片，實際依隨時節、拍攝角度而有所不同，敬請諒察。</p>
+                        <p>其它未盡事項請依照「國外旅遊定型化契約書」之相關條款規定為主。</p>
+                        <p>歐洲銷售產品，皆未含ETIAS費用。</p>
+                        <p>本行程包含500萬旅行業責任保險+20萬海外意外醫療保額及旅行社履約保證保險。【旅客未滿15歲或70歲以上，依保險公司規定最高旅責250萬元+20萬海外意外醫療保額】。</p>
+                        <p>依「旅遊定型化契約」中規定，本公司有告知旅客自行投保旅行平安保險之義務。因此，為了確保您的權益及避免出國旅遊可能產生的風險，特別提醒及建議您，可視需要自行購買旅遊平安保險及旅遊不便險。</p>
                         <!-- 新增免責聲明與按鈕 -->
                         <div class="mt-6 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2">
                             <span class="text-xs text-gray-500">最後更新以獨角獸旅行社公佈為準</span>
